@@ -1,0 +1,8 @@
+{
+  "name": "Salesforce Org Documenter",
+  "description": "A web app and workers designed to document a Salesforce Org",
+  "repository": "https://github.com/ibigfoot/documenter",
+  "logo": "https://node-js-sample.herokuapp.com/node.svg",
+  "keywords": ["java", "oauth", "salesforce"],
+  "addons": ["memcachier:dev","heroku-postgresql:hobby-dev,cloudampq:lemur"]
+}

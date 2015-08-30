@@ -3,3 +3,5 @@
 */target
 */.settings
 */.classpath
+web/src/main/webapp/template.html
+

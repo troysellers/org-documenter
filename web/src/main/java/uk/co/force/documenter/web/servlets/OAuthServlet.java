@@ -93,7 +93,7 @@ public class OAuthServlet extends HttpServlet {
 				request.getSession().setAttribute(Constants.ACCESS_TOKEN, authSession.getString(Constants.ACCESS_TOKEN));
 				// set session timeout for 20 minutes
 				request.getSession().setMaxInactiveInterval(20*60);
-				response.sendRedirect("/web/home.jsp");
+				response.sendRedirect("/app/home.jsp");
 				
 			} finally {
 				client.close();
@@ -131,7 +131,7 @@ public class OAuthServlet extends HttpServlet {
 			return;
 
 		} else {
-			response.sendRedirect("/web/home.jsp");
+			response.sendRedirect("/app/home.jsp");
 		}
 	}
 

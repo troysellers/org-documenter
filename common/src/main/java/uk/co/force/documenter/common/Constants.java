@@ -35,4 +35,8 @@ public class Constants {
 
 	// RabbitMQ Channels
 	public static final String REQUEST_FOR_DOC_CHANNEL = "requestForDocument";
+	
+	// salesforce stuff
+	public static final String API_VERSION = "v34.0";
+	
 }

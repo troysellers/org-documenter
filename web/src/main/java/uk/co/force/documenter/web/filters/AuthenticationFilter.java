@@ -21,15 +21,13 @@ import uk.co.force.documenter.common.Constants;
 @WebFilter(
 		filterName="AuthenticationFilter",
 		displayName="Authentication Filter",
-		urlPatterns={"/web/*"})
+		urlPatterns={"/app/*"})
 public class AuthenticationFilter implements Filter {
 
 	private Logger logger;
 	
 	@Override
-	public void destroy() {
-		// TODO Auto-generated method stub
-	}
+	public void destroy() {}
 
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -37,10 +35,10 @@ public class AuthenticationFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest)servletRequest;
 		JSONObject authResponse = (JSONObject)request.getSession().getAttribute(Constants.AUTH_SESSION);
 		if(authResponse != null && authResponse.getString(Constants.ACCESS_TOKEN) != null) {
-			logger.info("Have found an access token and authentication session");
+			logger.debug("Have found an access token and authentication session");
 			filterChain.doFilter(servletRequest, servletResponse);
 		} else {
-			logger.info("Un-authenticated session");
+			logger.debug("Un-authenticated session");
 			((HttpServletResponse)servletResponse).sendRedirect("/");
 		}
 	}

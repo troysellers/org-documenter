@@ -1,7 +1,7 @@
 <!DOCTYPE>
 <html>
 <head>
-<link rel="stylesheet" href="app.css"></link>
+<link rel="stylesheet" href="public/css/home.css"></link>
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid Sans"></link>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
@@ -9,26 +9,27 @@
 	<div class="container">
 		<div class="header">Salesforce Org Documenter</div>
 		<div class="loginBox">
-			<div class="loginBoxCmp"><img src="web/img/sfLogo.png" height="100px" /></div>
+			<div class="loginBoxCmp"><img src="public/img/sfLogo.png" height="100px" /></div>
 			<div class="loginBoxCmp"><h2>Login</h2></div>
-			<form action="/oauth" method="POST" id="loginForm">
-				<input id="env" name="env" />
-				<div class="loginBoxCmp button">
-					<a class="btn">Production</a>
-				</div>
-				<div class="loginBoxCmp button">
-					<a class="btn">Sandbox</a>
-				</div>
-				<div class="loginBoxCmp button" style="display:none;">
-					<a class="btn">Custom</a>
-				</div>
-				<div class="loginBoxCmp">
-					<input id="custom_domain_checkbox" type="checkbox" checked="checked" /> I have a different Salesforce domain.<br />
-					<input type="text" id="custom_domain"/>
-				</div>
-			</form>
+			
+			<div class="loginBoxCmp button">
+				<a class="btn">Production</a>
+			</div>
+			<div class="loginBoxCmp button">
+				<a class="btn">Sandbox</a>
+			</div>
+			<div class="loginBoxCmp button" style="display:none;">
+				<a class="btn">Custom</a>
+			</div>
+			<div class="loginBoxCmp">
+				<input id="custom_domain_checkbox" type="checkbox" /> I have a different Salesforce domain.<br />
+				<input type="text" id="custom_domain"/>
+			</div>
 		</div>
 	</div>
+	<form action="/oauth" method="POST" id="loginForm">
+		<input type="hidden" id="env" name="env" />
+	</form>
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {

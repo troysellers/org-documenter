@@ -3,7 +3,7 @@
 <head>
 
 <link rel="stylesheet" href="public/css/home.css"></link>
-<script src="public/bower/js/jquery/jquery.js"></script>
+<script src="/public/bower/js/jquery/jquery.js" type="text/javascript"></script>
 </head>
 <body>
 	<div class="container">

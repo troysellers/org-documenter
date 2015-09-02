@@ -32,26 +32,27 @@
 	</form>
 </body>
 <script type="text/javascript">
-	$(document).ready(function() {
+	var j$ = jQuery.noConflict();
+	j$(document).ready(function() {
 		
-		$("#custom_domain_checkbox").click(function() {
-			$("#custom_domain").toggle();
-			$(".button").toggle();
+		j$("#custom_domain_checkbox").click(function() {
+			j$("#custom_domain").toggle();
+			j$(".button").toggle();
 		});
 		
-		$(".btn").click(function() {
-			if($(this).text() == 'Production') {
-				$("#env").val("login.salesforce.com");
-			} else if($(this).text() == 'Sandbox') {
-				$("#env").val("test.salesforce.com")
+		j$(".btn").click(function() {
+			if(j$(this).text() == 'Production') {
+				j$("#env").val("login.salesforce.com");
+			} else if(j$(this).text() == 'Sandbox') {
+				j$("#env").val("test.salesforce.com")
 			}  else {
-				var custom = $("#custom_domain").val();
+				var custom = j$("#custom_domain").val();
 				if(custom.indexOf("://") > -1) {
 					custom = custom.substring(custom.indexOf("://")+3, custom.length);	
 				}
-				$("#env").val(custom);
+				j$("#env").val(custom);
 			}
-			$("#loginForm").submit();
+			j$("#loginForm").submit();
 		});
 	});
 </script>

@@ -1,8 +1,9 @@
 <!DOCTYPE>
 <html>
 <head>
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans);
 <link rel="stylesheet" href="public/css/home.css"></link>
-<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid Sans"></link>
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Droid Sans"></link>
 <script src="public/bower/js/jquery/jquery.js"></script>
 </head>
 <body>

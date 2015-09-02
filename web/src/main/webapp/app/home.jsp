@@ -1,5 +1,6 @@
 <html ng-app="documenter">
 <head>
+	@import url(https://fonts.googleapis.com/css?family=Droid+Sans);
 	<title>Documenter</title>
 	<meta content="text/html; charset=UTF-8" http-equiv="content-type"></meta>
 	<meta charset="UTF-8"></meta>

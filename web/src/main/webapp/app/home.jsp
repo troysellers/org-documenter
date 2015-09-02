@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"></meta>
 
 	<link type="text/css" href="../public/css/home.css" rel="stylesheet"></link>
-	<link type="text/css" href="../public/bower/components/bootstrap/dist/css/bootstrap.css" rel="stylesheet"></link>
+	<link type="text/css" href="../public/bower/css/bootstrap.css" rel="stylesheet"></link>
 	<link type="text/css" href="../public/bower/css/angular-loading-bar/loading-bar.css" rel="stylesheet"></link>
 </head>
 <body>

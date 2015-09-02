@@ -34,7 +34,7 @@
 <script type="text/javascript">
 	var j$ = jQuery.noConflict();
 	j$(document).ready(function() {
-		
+		alert("JQUERY");
 		j$("#custom_domain_checkbox").click(function() {
 			j$("#custom_domain").toggle();
 			j$(".button").toggle();

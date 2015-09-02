@@ -6,5 +6,5 @@
 web/src/main/webapp/template.html
 web/bower*
 web/bootstrap.less
-web/src/main/webapp/public/bower/*
+web/src/main/webapp/public/bower/components/*
 

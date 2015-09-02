@@ -50,10 +50,16 @@ public class OAuthServlet extends HttpServlet {
 		
 		logger = LoggerFactory.getLogger(this.getClass());
 		
-		clientId = this.getInitParameter("clientId");
-		clientSecret = this.getInitParameter("clientSecret");
-		redirectUri = this.getInitParameter("redirectUri");
+		clientId = System.getenv("OAUTH_CLIENT_ID");
+		clientSecret = System.getenv("OAUTH_CLIENT_SECRET");
+		redirectUri = System.getenv("OAUTH_REDIRECT_URI");
 		
+		if(clientId == null || clientSecret == null || redirectUri == null) {
+			clientId = this.getInitParameter("clientId");
+			clientSecret = this.getInitParameter("clientSecret");
+			redirectUri = this.getInitParameter("redirectUri");
+			logger.info("Using local development environment OAuth configuration");
+		}
 		logger.info("Initialised with ID [{}] Secret [{}] Redirect [{}]", clientId, clientSecret, redirectUri);	
 	}
 	

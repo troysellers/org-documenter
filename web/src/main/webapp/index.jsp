@@ -3,7 +3,7 @@
 <head>
 <link rel="stylesheet" href="public/css/home.css"></link>
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid Sans"></link>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="public/bower/js/jquery/jquery.js"></script>
 </head>
 <body>
 	<div class="container">

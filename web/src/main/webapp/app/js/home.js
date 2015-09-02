@@ -1,8 +1,14 @@
 
-var documenter = angular.module('documenter', ['ui.bootstrap','ngRoute']);
+var documenter = angular.module('documenter', ['ui.bootstrap','ngRoute','angular-loading-bar']);
 
 
-documenter.controller('HomePageController', function($scope, $window, $http) {
+// loading bar spinner
+documenter.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner"></div>';
+}]);
+
+// Overview tab controller
+documenter.controller('OverviewController', function($scope, $window, $http) {
 
 	$scope.overview = function() {
 		
@@ -23,6 +29,42 @@ documenter.controller('HomePageController', function($scope, $window, $http) {
 	
 });
 
+documenter.controller('ERDiagramController', function($scope) {
+	console.log('We have an ER Diagram Controller');
+});
+
+documenter.controller('ClassDiagramController', function($scope) {
+	console.log('We have an ClassDiagram Controller');
+});
+
+documenter.controller('UIPagesController', function($scope) {
+	console.log('We have the UIPagesController Controller');
+});
+
+documenter.controller('SecurityController', function($scope) {
+	console.log('We have the SecurityController');
+});
+
+documenter.controller('WorkflowController', function($scope) {
+	console.log('We have the Workflow controller');
+});
+
+documenter.controller('DataAnlysisController', function($scope) {
+	console.log('We have the DataAnalysis controller');
+});
+
+documenter.controller('FilesController', function($scope) {
+	console.log('We have the Files controller');
+});
+
+documenter.controller('InstalledPackagesController', function($scope) {
+	console.log('We have the InstalledPackages controller');
+});
+
+documenter.controller('DataAnalysisController', function($scope) {
+	console.log('WE have the DataAnalysisController controller');
+	
+})
 function getObjectBreakdown(sobjectArray) {
 	
 	var retval = {};

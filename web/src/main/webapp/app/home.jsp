@@ -1,12 +1,11 @@
 <html ng-app="documenter">
 <head>
-	@import url(https://fonts.googleapis.com/css?family=Droid+Sans);
+
 	<title>Documenter</title>
 	<meta content="text/html; charset=UTF-8" http-equiv="content-type"></meta>
 	<meta charset="UTF-8"></meta>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"></meta>
 
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid Sans"></link>
 	<link type="text/css" href="../public/css/home.css" rel="stylesheet"></link>
 	<link type="text/css" href="../public/bower/components/bootstrap/dist/css/bootstrap.css" rel="stylesheet"></link>
 	<link type="text/css" href="../public/bower/css/angular-loading-bar/loading-bar.css" rel="stylesheet"></link>

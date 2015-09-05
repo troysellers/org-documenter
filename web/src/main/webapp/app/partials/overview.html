@@ -1,0 +1,18 @@
+<div ng-controller="OverviewController">					
+	Here is the overview <br />
+	Number of Custom Objects - {{objBreakdown.custom}} <br />
+	Number of External Objects - {{objBreakdown.external}} <br />
+	Number of Big Objects - {{objBreakdown.big}} <br />
+	Number of Apex Classes - {{apexClassSize}} <br />
+	
+	<div>
+		<div>
+			<button class="slds-button slds-button--neutral" ng-click="toggleSObjects()">{{showSObjects.label}}</button>
+			<button class="slds-button slds-button--neutral" ng-click="toggleApexManifest()">{{showApexManifest.label}}</button>
+		</div>
+		<div ng-show="showSObjects.visible">{{data.sobjects}}</div>
+		<div ng-show="showApexManifest.visible">{{data.apexManifest}}</div>
+	</div>
+	
+	
+</div>

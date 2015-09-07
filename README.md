@@ -12,18 +12,11 @@ The documenter is designed to help you understand your Salesforce org. It uses t
 - Java 8 with Embedded Tomcat
 - Memcache for session persistence on Heroku 
 - AngularJS
-- Salesforce Lightning Design System
+- Salesforce Lightning Design System (https://developer.salesforce.com/lightning/design-system)
 
 
 
 ## Getting Started
-
-Install bower-installer
-- sudo npm install -g bower-installer
-
-Then, run bower-installer to install dependencies
-
-ONE FIX - need to copy bootstrap css into the css directory.. 
 
 Setup to run exploded in Eclipse.
 - set build path to copy class files to web/src/main/webapp/WEB-INF/classes directory

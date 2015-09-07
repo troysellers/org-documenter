@@ -5,6 +5,8 @@ The documenter is designed to help you understand your Salesforce org. It uses t
 
 ### This project has only just begun development, it should not be considered ready for use by any stretch of the imagination :) 
 
+Current version running on Heroku is https://protected-beyond-5758.herokuapp.com/ 
+
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 ## So What's In The Box?

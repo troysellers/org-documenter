@@ -45,7 +45,7 @@ public class LogoutServlet extends HttpServlet {
 			
 				String url = authSession.getString(Constants.ENV_PARAM) + "/services/oauth2/revoke="+accessToken;
 			
-				JSONObject logoutResponse = restApi.get(url, client, authSession);
+				JSONObject logoutResponse = restApi.getJSONObject(authSession.getString(Constants.ACCESS_TOKEN), url, client);
 				logger.info("Logout response [{}]", logoutResponse.toString());
 			}
 		} catch (Exception e) {

@@ -7,6 +7,15 @@ The documenter is designed to help you understand your Salesforce org. It uses t
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
+## So What's In The Box?
+
+- Java 8 with Embedded Tomcat
+- Memcache for session persistence on Heroku 
+- AngularJS
+- Salesforce Lightning Design System
+
+
+
 ## Getting Started
 
 Install bower-installer

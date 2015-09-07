@@ -1,10 +1,14 @@
 package uk.co.force.documenter.common;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -12,8 +16,11 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Convenience class for managing calls to the Salesforce REST API.
@@ -23,6 +30,11 @@ import org.json.JSONTokener;
  */
 public class SFRestApi {
 	
+	private Logger logger;
+	
+	public SFRestApi() {
+		logger = LoggerFactory.getLogger(this.getClass());
+	}
 	/**
 	 * Returns the authentication response from a SF login. 
 	 * Executes the Password OAuth flow. 
@@ -52,8 +64,11 @@ public class SFRestApi {
 
 		HttpEntity entity = response.getEntity();
 		jobj = new JSONObject(new JSONTokener(entity.getContent()));
+		
 		EntityUtils.consume(entity);
 
+		logger.info(jobj.toString());
+		
 		return jobj;
 	}
 	
@@ -65,23 +80,58 @@ public class SFRestApi {
 	 * @return - The JSONObject returned from this call
 	 * @throws Exception - nothing is caught here.
 	 */
-	public JSONObject get(String url, CloseableHttpClient client, JSONObject authResponse) throws Exception{
+	public JSONObject getJSONObject(String accessToken, String url, HttpClient client) {
+		
+		JSONObject jObj = new JSONObject();
 		
 		RequestBuilder builder = RequestBuilder.create(HttpGet.METHOD_NAME);
-		builder.addHeader("Authorization", "Bearer "+authResponse.getString("access_token"));
+		builder.addHeader("content-type","application/x-www-form-urlencoded");
+		builder.addHeader("Authorization: ", "OAuth " + accessToken);
+		
 		builder.setUri(url);
-		
-		CloseableHttpResponse response = client.execute(builder.build());
-		HttpEntity entity = response.getEntity();
+		try {
+			HttpResponse response = client.execute(builder.build());
+			
+			logger.info(response.getStatusLine().toString());
+			HttpEntity entity = response.getEntity();
+			
+			jObj = new JSONObject(new JSONTokener(entity.getContent()));
+			logger.info(jObj.toString());
+			EntityUtils.consume(entity);
 
-		System.out.println(IOUtils.toString(entity.getContent()));
-	
-		JSONObject jobj = new JSONObject(new JSONTokener(entity.getContent()));
-		EntityUtils.consume(entity);
-		
-		return jobj;
+		} catch (ClientProtocolException pe) {
+			
+		} catch (IOException ioe) {
+			
+		}
+		return jObj;
 	}
 	
+	public JSONArray getJSONArray(String accessToken, String url, HttpClient client) {
+		
+		JSONArray jArray = new JSONArray();
+		
+		RequestBuilder builder = RequestBuilder.create(HttpGet.METHOD_NAME);
+		builder.addHeader("content-type","application/x-www-form-urlencoded");
+		builder.addHeader("Authorization: ", "OAuth " + accessToken);
+		
+		builder.setUri(url);
+		try {
+			HttpResponse response = client.execute(builder.build());
+			
+			logger.info(response.getStatusLine().toString());
+			HttpEntity entity = response.getEntity();
+			
+			jArray = new JSONArray(new JSONTokener(entity.getContent()));
+			EntityUtils.consume(entity);
+			
+		} catch (ClientProtocolException pe) {
+			
+		} catch (IOException ioe) {
+			
+		}
+		return jArray;
+	}
 	/**
 	 * Perform a POST request
 	 * @param url - the complete URL (e.g https://na1.salesforce.com/services/v34.0/sobjects)
@@ -105,6 +155,7 @@ public class SFRestApi {
 		JSONObject jobj = new JSONObject(new JSONTokener(entity.getContent()));
 		EntityUtils.consume(entity);
 		
+		logger.info(jobj.toString());
 		return jobj;
 		
 	}

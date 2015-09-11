@@ -25,6 +25,7 @@ import uk.co.force.documenter.common.Constants;
 public class AuthenticationFilter implements Filter {
 
 	private Logger logger;
+	private boolean isDev;
 	
 	@Override
 	public void destroy() {}

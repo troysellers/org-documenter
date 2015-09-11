@@ -3,6 +3,12 @@ package uk.co.force.documenter.web.servlets;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.nio.file.Files;
+import java.nio.file.OpenOption;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
@@ -45,6 +51,8 @@ public class OAuthServlet extends HttpServlet {
 	private String authUrl = null;
 	private String tokenUrl = null;
 	
+	private boolean isDev = false;
+	private String AUTH_FILE = "src/test/mockCalls/authSession.txt";
 	@Override
 	public void init() throws ServletException {
 		
@@ -59,6 +67,10 @@ public class OAuthServlet extends HttpServlet {
 			clientSecret = this.getInitParameter("clientSecret");
 			redirectUri = this.getInitParameter("redirectUri");
 			logger.info("Using local development environment OAuth configuration");
+		}
+		if(System.getenv("isDev") != null) {
+			isDev = Boolean.valueOf(System.getenv("isDev"));
+			logger.info("WE ARE RUNNING WITH DEVELOPMENT PARAMS");
 		}
 		logger.info("Initialised with ID [{}] Secret [{}] Redirect [{}]", clientId, clientSecret, redirectUri);	
 	}
@@ -94,6 +106,8 @@ public class OAuthServlet extends HttpServlet {
 				authSession.put(Constants.ENV_PARAM, environment);
 				EntityUtils.consume(entity);
 				
+				Files.write(Paths.get(AUTH_FILE), authSession.toString().getBytes(), StandardOpenOption.CREATE);
+				
 				// set authSession
 				request.getSession().setAttribute(Constants.AUTH_SESSION, authSession);
 				request.getSession().setAttribute(Constants.ACCESS_TOKEN, authSession.getString(Constants.ACCESS_TOKEN));
@@ -116,7 +130,15 @@ public class OAuthServlet extends HttpServlet {
 		JSONObject authSession = (JSONObject)request.getSession().getAttribute(Constants.AUTH_SESSION);
 		logger.info("OAuth Servlet request URL [{}] [{}]", request.getRequestURL(), accessToken);
 		
-		if(accessToken == null || authSession == null) {
+		if(isDev) {
+			
+			logger.info("Skipping any authentication - Using DEV mocks");
+			List<String> authResponseLines = Files.readAllLines(Paths.get(AUTH_FILE));
+			authSession = new JSONObject(new JSONTokener(authResponseLines.get(0)));
+			accessToken = authSession.getString(Constants.ACCESS_TOKEN);
+			response.sendRedirect("/app/home.html");
+			
+		} else if(accessToken == null || authSession == null) {
 
 			String environment =  request.getParameter(Constants.ENV_PARAM); // get SF env from request
 			logger.info("Environment {}", environment);

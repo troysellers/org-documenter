@@ -17,7 +17,6 @@ Current version running on Heroku is https://protected-beyond-5758.herokuapp.com
 - Salesforce Lightning Design System (https://developer.salesforce.com/lightning/design-system)
 
 
-
 ## Getting Started
 
 Setup to run exploded in Eclipse.
@@ -25,3 +24,8 @@ Setup to run exploded in Eclipse.
 - use Debug -> Debug Configurations and add new Java application
 	webapp.runner.launch.Main
 
+## Running local dev (or I want to work on this on the plane)
+
+There is some hacks in some of the code that will probably removed that will enable you to run this in an offline state.
+In the src/test directory there is some files that are a saved result of some REST API calls that are in use. 
+Set a system environment variable isDev=true to run this project offline.. 

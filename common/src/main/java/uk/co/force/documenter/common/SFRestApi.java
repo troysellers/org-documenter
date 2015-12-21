@@ -89,12 +89,11 @@ public class SFRestApi {
 		try {
 			HttpResponse response = client.execute(builder.build());
 			
-			logger.info(response.getStatusLine().toString());
-			logger.info(response.toString());
+			logger.debug(response.getStatusLine().toString());
+			logger.debug(response.toString());
 			HttpEntity entity = response.getEntity();
 		
 			jObj = new JSONObject(new JSONTokener(entity.getContent()));
-			logger.info(jObj.toString());
 			EntityUtils.consume(entity);
 
 		} catch (ClientProtocolException pe) {
@@ -116,8 +115,8 @@ public class SFRestApi {
 		builder.setUri(url);
 		try {
 			HttpResponse response = client.execute(builder.build());
+			logger.debug(response.getStatusLine().toString());
 			
-			logger.info(response.getStatusLine().toString());
 			HttpEntity entity = response.getEntity();
 			
 			jArray = new JSONArray(new JSONTokener(entity.getContent()));
@@ -153,7 +152,7 @@ public class SFRestApi {
 		JSONObject jobj = new JSONObject(new JSONTokener(entity.getContent()));
 		EntityUtils.consume(entity);
 		
-		logger.info(jobj.toString());
+		logger.debug(jobj.toString());
 		return jobj;
 		
 	}

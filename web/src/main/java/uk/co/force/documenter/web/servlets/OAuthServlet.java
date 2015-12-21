@@ -65,6 +65,8 @@ public class OAuthServlet extends HttpServlet {
 			clientSecret = this.getInitParameter("clientSecret");
 			redirectUri = this.getInitParameter("redirectUri");
 			logger.info("Using local development environment OAuth configuration");
+		} else {
+			logger.info("We have used HEROKU configuration");
 		}
 
 		logger.info("Initialised with ID [{}] Secret [{}] Redirect [{}] !!!!!!!", clientId, clientSecret, redirectUri);	

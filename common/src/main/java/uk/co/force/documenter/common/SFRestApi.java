@@ -1,10 +1,7 @@
 package uk.co.force.documenter.common;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -93,16 +90,17 @@ public class SFRestApi {
 			HttpResponse response = client.execute(builder.build());
 			
 			logger.info(response.getStatusLine().toString());
+			logger.info(response.toString());
 			HttpEntity entity = response.getEntity();
-			
+		
 			jObj = new JSONObject(new JSONTokener(entity.getContent()));
 			logger.info(jObj.toString());
 			EntityUtils.consume(entity);
 
 		} catch (ClientProtocolException pe) {
-			
+			pe.printStackTrace();
 		} catch (IOException ioe) {
-			
+			ioe.printStackTrace();
 		}
 		return jObj;
 	}
@@ -126,9 +124,9 @@ public class SFRestApi {
 			EntityUtils.consume(entity);
 			
 		} catch (ClientProtocolException pe) {
-			
+			pe.printStackTrace();
 		} catch (IOException ioe) {
-			
+			ioe.printStackTrace();
 		}
 		return jArray;
 	}

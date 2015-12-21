@@ -43,9 +43,10 @@ documentControllers.controller('DocumenterController', ['$scope',function($scope
 documentControllers.controller('OverviewController', ['$scope','ObjectDataFactory', function($scope, ObjectDataFactory) {
 
 	var objectData = ObjectDataFactory.success(function (result) {
-			$scope.data = result;
-			$scope.objBreakdown = getObjectBreakdown(result.sobjects.sobjects);
-			console.log(JSON.stringify(result.sobjects.sobjects));
+		console.log(JSON.stringify(result));
+		$scope.data = result;
+		//$scope.objBreakdown = getObjectBreakdown(result.sobjects);// could be problem with local and remote
+			
 	});
 
 	$scope.showSObjects = {
@@ -69,12 +70,18 @@ documentControllers.controller('OverviewController', ['$scope','ObjectDataFactor
 }]);
 
 
-documentControllers.controller('ERDiagramController', ['$scope',function($scope) {
-	// console.log('We have an ER Diagram Controller');
+documentControllers.controller('ERDiagramController', ['$scope','SObjectDataFactory', function($scope, SObjectDataFactory) {
+	console.log("~~ er diagram");
+	var sObjectData = SObjectDataFactory.success(function(result) {
+		$scope.sobjectData = result;
+	});
 }]);
 
-documentControllers.controller('ClassDiagramController', ['$scope',function($scope) {
-	// console.log('We have an ClassDiagram Controller');
+documentControllers.controller('ClassDiagramController', ['$scope','ApexClassFactory',function($scope, ApexClassFactory) {
+	console.log('We have an ClassDiagram Controller');
+	var apexClasses = ApexClassFactory.success(function(result) {
+		$scope.apexClasses = result;
+	})
 }]);
 
 documentControllers.controller('UIPagesController', ['$scope',function($scope) {
@@ -85,9 +92,11 @@ documentControllers.controller('SecurityController', ['$scope',function($scope) 
 	// console.log('We have the SecurityController');
 }]);
 
-documentControllers.controller('WorkflowController', ['$scope',function($scope) {
-	// console.log('~~ in the workflow controller');
-	
+documentControllers.controller('WorkflowController', ['$scope', 'WorkflowFactory',function($scope, WorkflowFactory) {
+	console.log('~~ in the workflow controller');
+	var workflows = WorkflowFactory.success(function(result) {
+		$scope.workflows = result;
+	});
 }]);
 
 documentControllers.controller('DataAnlysisController', ['$scope',function($scope) {
@@ -112,9 +121,11 @@ function getObjectBreakdown(sobjectArray) {
 	retval.custom = 0;
 	retval.big = 0;
 	retval.external = 0
+
 	
 	for (var i = 0; i < sobjectArray.length; i++) {
 	    var obj = sobjectArray[i];
+	    console.log(JSON.stringify(obj));
 	    
 	    if(obj.name.indexOf("__c") > -1) {
 	    	retval.custom++;

@@ -45,9 +45,7 @@ public class ApexClassServlet extends BaseServlet {
 				break;
 			}
 			apexObjectGetURL += "/" + objId;
-			logger.info(apexObjectGetURL);
 			JSONObject temp = restApi.getJSONObject(authSession.getString(Constants.ACCESS_TOKEN), apexObjectGetURL, client);
-			logger.info(temp.toString());
 			apexClasses.add(temp);
 		}
 		

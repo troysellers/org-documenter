@@ -51,8 +51,6 @@ public class OAuthServlet extends HttpServlet {
 	private String authUrl = null;
 	private String tokenUrl = null;
 	
-
-	private String AUTH_FILE = "src/test/mockCalls/authSession.txt";
 	@Override
 	public void init() throws ServletException {
 		
@@ -102,8 +100,6 @@ public class OAuthServlet extends HttpServlet {
 				JSONObject authSession = new JSONObject(new JSONTokener(entity.getContent()));
 				authSession.put(Constants.ENV_PARAM, environment);
 				EntityUtils.consume(entity);
-				
-				Files.write(Paths.get(AUTH_FILE), authSession.toString().getBytes(), StandardOpenOption.CREATE);
 				
 				// set authSession
 				request.getSession().setAttribute(Constants.AUTH_SESSION, authSession);

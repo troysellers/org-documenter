@@ -4,5 +4,5 @@
   "repository": "https://github.com/ibigfoot/documenter",
   "logo": "https://node-js-sample.herokuapp.com/node.svg",
   "keywords": ["java", "oauth", "salesforce"],
-  "addons": ["memcachier:dev","heroku-postgresql:hobby-dev,cloudampq:lemur"]
+  "addons": ["memcachier:dev","heroku-postgresql:hobby-dev"]
 }

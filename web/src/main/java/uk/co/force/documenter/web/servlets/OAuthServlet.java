@@ -69,12 +69,16 @@ public class OAuthServlet extends HttpServlet {
 			logger.info("We have used HEROKU configuration");
 		}
 
-		logger.info("Initialised with ID [{}] Secret [{}] Redirect [{}] !!!!!!!", clientId, clientSecret, redirectUri);	
+		logger.info("Initialised with ID [{}] Secret [{}] Redirect [{}]", clientId, clientSecret, redirectUri);
 	}
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+		logger.info("Web app URL [{}]", request.getRequestURL());
+		// strips off https://
+		String herokuHost = request.getRequestURL().substring(request.getRequestURL().indexOf("//"), request.getRequestURL().length());
+		logger.info("Heroku host [{}]", herokuHost);
 		if(request.getRequestURI().endsWith("_callback")) {
 			
 			String code = request.getParameter(Constants.CODE);

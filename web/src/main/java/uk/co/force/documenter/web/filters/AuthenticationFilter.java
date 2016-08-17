@@ -31,8 +31,9 @@ public class AuthenticationFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-		
+
 		HttpServletRequest request = (HttpServletRequest)servletRequest;
+		logger.info("Trying to figure out if request is authenticated [{}]", request.getRequestURL());
 		JSONObject authResponse = (JSONObject)request.getSession().getAttribute(Constants.AUTH_SESSION);
 		if(authResponse != null && authResponse.getString(Constants.ACCESS_TOKEN) != null) {
 			logger.debug("Have found an access token and authentication session");

@@ -10,5 +10,9 @@ web/src/main/webapp/public/bower/components/*
 web/.project
 workers/.project
 common/.project
+/documenter.iml
 .idea/
-*.iml
+common/common.iml
+documenter.iml
+web/web.iml
+workers/workers.iml
